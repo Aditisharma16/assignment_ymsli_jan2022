@@ -4,21 +4,33 @@ import java.util.Random;
 
 class Multithread implements Runnable{
 
-	private int sum=0;
+	private int sum,value;
+	private boolean isDone = false;
 	@Override
 	public void run() {
 		
 		
-		int x=1+(int)(Math.random()*10);
-		sum+=x;
+	    value=1+(int)(Math.random()*10);
+		sum+=value;
 		
 
-		System.out.println("["+ Thread.currentThread().getName()+":"+ x+ " ]");
+		System.out.println("["+ Thread.currentThread().getName()+":"+ value+ " ]");
+		isDone = true;
+		synchronized (this) {
+			notifyAll();
+		}
 		
 		
 	}
 	public int getSum()
 	{
+		if (!isDone) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		return sum;
 	}
 	
