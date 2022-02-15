@@ -4,8 +4,6 @@
 <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.io.FileReader"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
 <fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="java.util.TreeSet"/>
@@ -20,7 +18,6 @@
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="java.util.Properties"/>
-<fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="com.mysql.jdbc.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
@@ -29,7 +26,16 @@
 <fullyQualifiedTypeName name="com.bookstoreapp.model.persistance.Book"/>
 <fullyQualifiedTypeName name="com.q2.batchprocessing.ConnectionFactory"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.function.Predicate"/>
 <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="com.q2.customer.model.exceptions.DataAccessException"/>
+<fullyQualifiedTypeName name="com.q2.customer.model.persistance.ConnectionFactory"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="com.q2.customer.model.persistance.CustomerDao"/>
+<fullyQualifiedTypeName name="com.q2.customer.model.persistance.CustomerDaoImpl"/>
+<fullyQualifiedTypeName name="com.q2.customer.model.service.CustomerService"/>
+<fullyQualifiedTypeName name="com.q2.customer.model.service.CustomerServiceImpl"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
