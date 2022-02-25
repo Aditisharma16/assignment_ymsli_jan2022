@@ -14,7 +14,6 @@
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
-<fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="java.util.Properties"/>
@@ -37,5 +36,17 @@
 <fullyQualifiedTypeName name="com.q2.customer.model.persistance.CustomerDaoImpl"/>
 <fullyQualifiedTypeName name="com.q2.customer.model.service.CustomerService"/>
 <fullyQualifiedTypeName name="com.q2.customer.model.service.CustomerServiceImpl"/>
+<fullyQualifiedTypeName name="com.traineeapp.model.exceptions.UserNotFoundException"/>
+<fullyQualifiedTypeName name="com.traineeapp.model.dao.user.User"/>
+<fullyQualifiedTypeName name="java.util.Optional"/>
+<fullyQualifiedTypeName name="com.traineeapp.model.dao.user.UserDao"/>
+<fullyQualifiedTypeName name="com.traineeapp.model.dao.user.UserDaoImpl"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+<fullyQualifiedTypeName name="com.traineeapp.model.service.TraineeService"/>
+<fullyQualifiedTypeName name="com.traineeapp.model.service.TraineeServiceImpl"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.traineeapp.model.dao.Trainee"/>
+<fullyQualifiedTypeName name="com.traineeapp.model.dao.BranchEnum"/>
 </qualifiedTypeNameHistroy>
