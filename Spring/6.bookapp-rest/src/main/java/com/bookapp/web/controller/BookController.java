@@ -1,58 +1,81 @@
 package com.bookapp.web.controller;
 
-import java.util.List;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.bookapp.model.dao.Book;
 import com.bookapp.model.service.BookService;
-import com.bookapp.web.entities.Book;
+import com.bookapp.web.forms.BookFormBean;
+import com.bookapp.web.util.BookMapper;
 
-@RestController
+@Controller
 public class BookController {
 
 	private BookService bookService;
-
+	
 	@Autowired
-	public void setBookService(BookService bookService) {
+	public BookController(BookService bookService) {
 		this.bookService = bookService;
 	}
 
-	@GetMapping("/book")
-	public ResponseEntity<List<Book>> getAllBooks() {
-		List<Book> allBooks = bookService.getAllBooks();
-		return ResponseEntity.status(200).body(allBooks);
+	// ------ Add Book ---- //
+	@GetMapping("addbook")
+	public String addGet(ModelMap map) {
+		map.addAttribute("bookForm", new BookFormBean());
+		return "bookform";
 	}
 
-	@PostMapping("/book")
-	public ResponseEntity<Book> addBook(@RequestBody Book book) {
-		bookService.addBook(book);
-		return ResponseEntity.status(201).body(book);
+	// ------ Update Book -----//
+	@GetMapping("updatebook")
+	public String updateGet(ModelMap map, @RequestParam(name = "id") Integer id) {
+		BookFormBean bookFormBean = BookMapper.convertToBookForm(bookService.getBookById(id));
+		map.addAttribute("bookForm", bookFormBean);
+		return "bookformupdate";
 	}
 
-	@GetMapping("/book/{id}")
-	public ResponseEntity<Book> getBookById(@PathVariable(name = "id") int id) {
-		return ResponseEntity.status(200).body(bookService.getBookById(id));
+	// ----- Post add/update -----
+	@PostMapping("addupdatebook")
+	public String addPost(@Valid @ModelAttribute(name = "bookForm") BookFormBean bookFormBean,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "bookform";
+		} else {
+			Book book = BookMapper.convertToBook(bookFormBean);
+			if (book.getId() == null)
+				bookService.addBook(book);
+			else
+				bookService.updateBook(book.getId(), book);
+			return "redirect:allbooks";
+		}
 	}
-
-	@DeleteMapping("book/{id}")
-	public ResponseEntity<String> deleteBookById(@PathVariable(name = "id") int id) {
+	
+	//	---- Delete Book ------
+	@GetMapping("delbook")
+	public String delete(@RequestParam(name = "id") Integer id) {
 		bookService.deleteBook(id);
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body("book deleted with id ; "+id);
+		return "redirect:allbooks";
 	}
-
-	@PutMapping("book/{id}")
-	public ResponseEntity<Book> updateBookById(@PathVariable(name = "id") int id, @RequestBody Book book) {
-		Book updateBook = bookService.updateBook(id, book);
-		System.out.println(updateBook);
-		return ResponseEntity.status(HttpStatus.OK).body(updateBook);
+	
+	//	--- Show all Books -----
+	@GetMapping("allbooks")
+	public ModelAndView getAll(ModelAndView mv) {
+		mv.addObject("books", bookService.getAllBooks());
+		mv.setViewName("allbooks");
+		return mv;
 	}
+	
+	@GetMapping("/")
+	public String home() {
+		return "redirect:allbooks";
+	}
+	
 }

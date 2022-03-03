@@ -2,44 +2,47 @@ package com.bookapp.model.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.bookapp.model.persistance.BookDao;
-import com.bookapp.web.entities.Book;
+import com.bookapp.model.dao.Book;
+import com.bookapp.model.dao.BookDao;
 
-@Service(value = "bookService")
+@Service
 @Transactional
 public class BookServiceImpl implements BookService {
 
-	private BookDao bookDao;
-	
+	private BookDao dao;
+
 	@Autowired
-	public void setBookDao(BookDao bookDao) {
-		this.bookDao = bookDao;
+	public BookServiceImpl(BookDao dao) {
+		this.dao = dao;
 	}
 
+	@Override
 	public List<Book> getAllBooks() {
-		return bookDao.getAllBooks();
+		return dao.getAllBooks();
 	}
 
+	@Override
 	public Book addBook(Book book) {
-		return bookDao.addBook(book);
+		return dao.addBook(book);
 	}
 
-	@Loggable
-	public Book deleteBook(int id) {
-		return bookDao.deleteBook(id);
-	}	
-	
+	@Override
+	public void deleteBook(int id) {
+		dao.deleteBook(id);
+	}
+
+	@Override
 	public Book updateBook(int id, Book book) {
-		return bookDao.updateBook(id, book);
+		return dao.updateBook(id, book);
 	}
 
+	@Override
 	public Book getBookById(int id) {
-		return bookDao.getBookById(id);
+		return dao.getBookById(id);
 	}
 
 }
